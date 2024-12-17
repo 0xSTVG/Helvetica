@@ -19,15 +19,15 @@ def convert_to_helvetica(text):
     }
     return ''.join(conversion_map.get(c, c) for c in text)
 
-@app.route("/convert", methods=["POST"])
-def convert():
-    data = request.get_json()
-    input_text = data.get("text", "")
-    helvetica_text = convert_to_helvetica(input_text)
-
+@app.route("/metadata", methods=["GET"])
+def metadata():
     return jsonify({
-        "type": "message",
-        "message": f"Converted text: {helvetica_text}"
+        "name": "Convert to Helvetica",
+        "icon": "tools",  # Use a valid icon name
+        "description": "Convert text to Helvetica font style.",
+        "action": {
+            "type": "post"
+        }
     })
 
 
