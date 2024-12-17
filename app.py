@@ -24,12 +24,12 @@ def convert():
     data = request.get_json()
     input_text = data.get("text", "")
     helvetica_text = convert_to_helvetica(input_text)
-    
+
     return jsonify({
-        "type": "form",
-        "title": "Converted Text",
-        "message": f"{helvetica_text}"
+        "type": "message",
+        "message": f"Converted text: {helvetica_text}"
     })
+
 
 
 if __name__ == "__main__":
