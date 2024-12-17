@@ -23,11 +23,25 @@ def convert_to_helvetica(text):
 def metadata():
     return jsonify({
         "name": "Convert to Helvetica",
-        "icon": "tools",  # Use a valid icon name
-        "description": "Convert text to Helvetica font style.",
+        "icon": "tools",
+        "description": "Convert your text to Helvetica font style.",
         "action": {
-            "type": "post"
+            "type": "frame",  # Change action type to 'frame'
+            "frameUrl": "https://helvetica-7hz3.onrender.com/convert-frame"
         }
+    })
+
+@app.route("/convert-frame", methods=["POST"])
+def convert_frame():
+    data = request.get_json()
+    input_text = data.get("input", "")
+
+    # Convert input text to Helvetica
+    helvetica_text = convert_to_helvetica(input_text)
+
+    return jsonify({
+        "type": "frame",
+        "message": f"Converted text: {helvetica_text}"
     })
 
 
